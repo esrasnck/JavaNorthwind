@@ -1,0 +1,26 @@
+JPA,Oracle tarafından desteklenen,bir veritabanındaki büyük ölçüde veriyi kalıcı olarak depolayan 
+sınıflar ve metotların bir koleksiyonudur. 
+İlişkisel nesne yönetimi(veritabanı) için kod yazım yükünü azaltır. Bunu JPA Provider çatısı sağlar.
+
+@EqualsAndHashCode(callSuper = false)
+
+
+ // constructor injection : bir bağımlılığı constructor üzerinden enjekte etmek.
+ 
+ @Autowired = bir interface'in somut olan sınıfnı arıyor. onu newleyip, o nesneyi bize veriyor. (autofac gibi. IoC )
+ 
+ @RestController => java olmayanlar da beni tanısın. sen bir rest controller'sın demek.
+ 
+ 
+ @Bean => aslında Java class'ı demek. biz bunları genellikle configurasyon amaçlı kullanırız. burada olan şey, uygulama başladığı anda
+ burada bizim springboot beani gördüğü zaman(java derlemesi ile beraber) bunu bean'e yerleştiriyor. bundan sonra, o da bir docket isimli
+ nesne ile, controllerlarımızdaki bütün request handlerları bulup / dökümantasyon haline getiriyor. yanı bu uygulama içindeki bütün apileri
+ tarayıp, test edebileceğimiz ortama taşıyor.
+ 
+ EndPoint=> istek yapılan yer
+ 
+ obje notasyonu => her bir obje demek(her bir product)
+ 
+ 
+// @EqualsAndHashCode(callSuper=false) => ben bir superclass degilim. benden yalnız basına bir super class oluşmaz.
+// super class || Equals =data kontrolü. birbilerine eşit mi değil mi diye. 

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlama.io.northwind.business.abstracts.ProductService;
+import kodlama.io.northwind.core.utilities.results.DataResult;
+import kodlama.io.northwind.core.utilities.results.Result;
+import kodlama.io.northwind.core.utilities.results.SuccessDataResult;
+import kodlama.io.northwind.core.utilities.results.SuccessResult;
 import kodlama.io.northwind.dataAccess.abstracts.ProductDao;
 import kodlama.io.northwind.entities.concretes.Product;
 
@@ -15,7 +19,7 @@ import kodlama.io.northwind.entities.concretes.Product;
 public class ProductManager implements ProductService {
 	
 	private ProductDao productDao;
-
+ // constructor injection : bir bağımlılığı constructor üzerinden enjekte etmek.
 	@Autowired // bunu yazmayip, private kisminin ustune yazsak yine yer. ama birden fazla injekte etmek gerekir diye boyle yapiyoruz.
 	public ProductManager(ProductDao productDao) {
 		super();
@@ -23,12 +27,21 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
-	public List<Product> getAll() {
+	public DataResult<List<Product>> getAll() {
 
 
-		return this.productDao.findAll(); // parametre vermedigimizde datalari getirir.
+		return new SuccessDataResult<List<Product>>(this.productDao.findAll(),"Product Listed !"); // parametre vermedigimizde datalari getirir.
 	}
 
+	@Override
+	public Result add(Product product) {
+		
+		this.productDao.save(product);
+		
+		return new SuccessResult("Product Added !");
+	}
+
+	
 }
 
 //spring nasil calisir ? => normal sartlarda bunlarin injection'inini kullanabilmek icin,generic olarak calisiyor. arka planda jpaRepository de

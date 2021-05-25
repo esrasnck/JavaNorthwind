@@ -3,10 +3,13 @@ package kodlama.io.northwind.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity  
@@ -18,7 +21,8 @@ import lombok.Data;
 @Table(name="products") // veritabaninda hangi tabloya karsilik gelecek.
 
 @Data   // => lombok'dan geliyor.
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 	
 	// sira bu ucu icin onemli degil. ama anatasyonlar onem arz edebilir.(baska noktalar icin)
@@ -26,7 +30,7 @@ public class Product {
 	@Id // tablodaki id alaninin ne oldugunu soylememiz gerekiyor.Bu islemlerini id'ye gore yapacak. biz aslinda jpa'ya ve bunun da implementasyonu olan
 	// hibernate'e bu tablonun id'sinin ne oldugunu bu sekilde veriyoruz. Sorgular bu id ye gore yapilandirilir.
 	
-	@GeneratedValue// birer birer attirdigimizi nasil uretildigini soylemek gerekiyor. generatedValue bir bir arttirmak demek.
+	@GeneratedValue(strategy = GenerationType.IDENTITY)// birer birer attirdigimizi nasil uretildigini soylemek gerekiyor. generatedValue bir bir arttirmak demek.
 	
 	@Column(name="product_id") // bu alan veritabaninda hangi column a karsilik geliyor anlaminda.
 	private int id;
@@ -46,24 +50,15 @@ public class Product {
 	@Column(name="quantity_per_unit")
 	private String quantityPerUnit;
 	
-	public Product() {};
-	
-	public Product(int id, int categoryId, String productName, double unitPrice, short unitsInStock,
-			String quantityPerUnit) {
-		super();
-		this.id = id;
-		this.categoryId = categoryId;
-		this.productName = productName;
-		this.unitPrice = unitPrice;
-		this.unitsInStock = unitsInStock;
-		this.quantityPerUnit = quantityPerUnit;
-	}
+
 
 }
 
 
 // anatasyon : bir class'in calisma ya da derleme aninda, onunla ilgili bilgi toplama icin kullanilan yapi
 //ona karsilik gelen yapi => c# karsiligi attribute. angular daki karsiligi dekarator (gozlerim kaniyor)
+
+//Maven= paket yönetimini yaptığımız yerin adı. bu repositoryi kullanacagiz
 
 
 
