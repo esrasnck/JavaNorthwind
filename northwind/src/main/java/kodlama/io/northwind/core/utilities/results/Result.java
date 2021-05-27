@@ -2,7 +2,7 @@ package kodlama.io.northwind.core.utilities.results;
 
 
 
-public class Result {
+public class Result { // super type : interface gibi soyut görevi görüyor
 
 	private boolean succcess;
 	private String message;

@@ -44,6 +44,8 @@ public class ProductsController {
 		return this.productService.add(product); 
 	}
 
+	// @RequestBody => hem istek yapıyor. hem datan budur diyor. bu classdaki alanları arayıp buluyor.
+	// bir product nesnesine dönüştürüp/ json formatında gönderiyor
 }
 
 

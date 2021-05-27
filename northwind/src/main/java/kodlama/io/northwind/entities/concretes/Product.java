@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -35,8 +37,8 @@ public class Product {
 	@Column(name="product_id") // bu alan veritabaninda hangi column a karsilik geliyor anlaminda.
 	private int id;
 	
-	@Column(name="category_id")
-	private int categoryId;
+	//@Column(name="category_id")
+	//private int categoryId;    => ManyToOne yazdığımız için commentliyoruz.
 	
 	@Column(name="product_name")
 	private String productName;
@@ -50,15 +52,14 @@ public class Product {
 	@Column(name="quantity_per_unit")
 	private String quantityPerUnit;
 	
-
+    @ManyToOne()    // bir product'ın bir kategorisi var.
+    @JoinColumn(name="category_id")
+    private Category category;
 
 }
 
 
-// anatasyon : bir class'in calisma ya da derleme aninda, onunla ilgili bilgi toplama icin kullanilan yapi
-//ona karsilik gelen yapi => c# karsiligi attribute. angular daki karsiligi dekarator (gozlerim kaniyor)
 
-//Maven= paket yönetimini yaptığımız yerin adı. bu repositoryi kullanacagiz
 
 
 

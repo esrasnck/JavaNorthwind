@@ -1,3 +1,28 @@
+spring nasil calisir ? => normal sartlarda bunlarin injection'inini kullanabilmek icin,generic olarak calisiyor. arka planda jpaRepository de
+spring bir repository clasi olusturuyor. (bir instance olusturup buraya veriyor. ama ona ait bir bilgi yok. bunun icin @Autowired notation'i)
+kullaniliyor.
+
+beans => javada proje classi
+factory => arka planda tasarim deseni dedigimiz bir yapiyi calistirir. bir instance verir acikcasi. Autowired'da spring arka planda
+buna karsilik gelecek projenin bir instance i olacak ( productDao 'nun) bir instance'i olabilecek sinifi uretip/ ona veriyor. 
+o zaten spring tarafinda tanimli.
+
+anatasyon : bir class'in calisma ya da derleme aninda, onunla ilgili bilgi toplama icin kullanilan yapi
+ona karsilik gelen yapi => c# karsiligi attribute. angular daki karsiligi dekarator (gozlerim kaniyor)
+
+Maven= paket yönetimini yaptığımız yerin adı. bu repositoryi kullanacagiz
+
+
+
+autowired genellikle bir bagimlilik olur. tek instance uzerinden gider. bunu configure de edebiliriz. ama java dunyasinde bu yaygindir.
+
+autofac business module da bunun autowired yapiyor. gidiyor. projeyi taniyor. ona karsilik gelen ne varsa, buraya veriyor.
+
+constructor injection : bir bağımlılığı constructor üzerinden enjekte etmek.
+
+@Autowired => bunu yazmayip, private kisminin ustune yazsak yine yer. ama birden fazla injekte etmek gerekir diye
+
+
 JPA,Oracle tarafından desteklenen,bir veritabanındaki büyük ölçüde veriyi kalıcı olarak depolayan 
 sınıflar ve metotların bir koleksiyonudur. 
 İlişkisel nesne yönetimi(veritabanı) için kod yazım yükünü azaltır. Bunu JPA Provider çatısı sağlar.
