@@ -14,15 +14,15 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
       Product getByProductName(String productName);
       //=> get'i gördüğü anda, tabloya bakıyor. productName'i bulduğu anda yapıştırıyor. getBy, findBy çokomelli :)
 	  
-	  Product getByProductNameAndCategoryId(String productName, int categoryId);
+	  Product getByProductNameAndCategory_CategoryId(String productName, int categoryId); // maplemesi için böyle yapmak gerekiyor :/
 	  
 	  // iki kurala da uyacak
 	  
-	  List<Product> getByProductNameOrCategoryId(String productName, int categoryId);
+	  List<Product> getByProductNameOrCategory_CategoryId(String productName, int categoryId);
 	  
 	  // ikisinden birinin doğru olması yeterli.
 	  
-	  List<Product> getByCategoryIdIn(List<Integer> categories);
+	  List<Product> getByCategoryIn(List<Integer> categories);
 	  
 	  // category id 'si in(1,2,3,4) vs. olan.(birden çok kategori gönderiyoruz. integer türünde kategorileri gönder diyoruz.
 	  
@@ -34,7 +34,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 	  
 	  // ürün isimleri şununla başlayan, ürün isimleri şununla biten (şu= parametre)
 	  
-	  @Query("From Product where productName=:productName and ​category.categoryId=:categoryId")
+	  @Query("From Product where productName=:productName and ​categoryId=:categoryId") // TODO bu query bende çalışıyor?
 	  // altın kural=> sorguyu yazarken, veritabanı tablosunu unutun.
 	  List<Product> getByNameAndCategory(String productName, int categoryId);
 	  
