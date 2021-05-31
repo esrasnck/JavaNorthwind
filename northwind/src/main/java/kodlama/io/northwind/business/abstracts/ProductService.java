@@ -4,7 +4,9 @@ import java.util.List;
 
 import kodlama.io.northwind.core.utilities.results.DataResult;
 import kodlama.io.northwind.core.utilities.results.Result;
+import kodlama.io.northwind.entities.concretes.Category;
 import kodlama.io.northwind.entities.concretes.Product;
+import kodlama.io.northwind.entities.dtos.ProductWithCategoryDto;
 
 public interface ProductService {
 
@@ -22,7 +24,7 @@ public interface ProductService {
 	
 	DataResult<List<Product>> getByProductNameOrCategoryId(String productName,int categoryId);
 	
-	DataResult<List<Product>> getByCategoryIdIn(List<Integer> categories);
+	DataResult<List<Product>> getByCategoryIdIn(List<Category> categories);
 	
 	DataResult<List<Product>> getByProductNameContains(String productName);
 	
@@ -30,4 +32,6 @@ public interface ProductService {
 	
 	DataResult<List<Product>> getByNameAndCategory(String productName,int categoryId);
 	
+	
+	DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails();
 }

@@ -49,3 +49,12 @@ sınıflar ve metotların bir koleksiyonudur.
  
 // @EqualsAndHashCode(callSuper=false) => ben bir superclass degilim. benden yalnız basına bir super class oluşmaz.
 // super class || Equals =data kontrolü. birbilerine eşit mi değil mi diye. 
+
+
+
+
+@Query("From JobAdvertisement where isActive=true")
+	List<JobAdvertisement> getByIsActive();
+	
+	İkisi aynı => find  da yer.
+	List<JobAdvertisement> getByIsActiveTrue();

@@ -35,7 +35,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)// birer birer attirdigimizi nasil uretildigini soylemek gerekiyor. generatedValue bir bir arttirmak demek.
 	
 	@Column(name="product_id") // bu alan veritabaninda hangi column a karsilik geliyor anlaminda.
-	private int id;
+	private Integer id;
 	
 	//@Column(name="category_id")
 	//private int categoryId;    => ManyToOne yazdığımız için commentliyoruz.

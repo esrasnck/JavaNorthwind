@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import kodlama.io.northwind.entities.concretes.Category;
 import kodlama.io.northwind.entities.concretes.Product;
+import kodlama.io.northwind.entities.dtos.ProductWithCategoryDto;
 
 public interface ProductDao extends JpaRepository<Product, Integer> {
 
@@ -22,7 +24,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 	  
 	  // ikisinden birinin doğru olması yeterli.
 	  
-	  List<Product> getByCategoryIn(List<Integer> categories);
+	  List<Product> findByCategoryIn(List<Category> categories);
 	  
 	  // category id 'si in(1,2,3,4) vs. olan.(birden çok kategori gönderiyoruz. integer türünde kategorileri gönder diyoruz.
 	  
@@ -40,7 +42,14 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 	  
 	  // JPQL => link gibi. ama string formatta yapılan, formata dikkat edilmesi gereken bir yapı. sorguyu objeler üzerinden yapıyoruz. 
 	  // istersek de, normal sql queryi si atabiliyoruz.
-	
+
+	  
+	  @Query("Select new kodlama.io.northwind.entities.dtos.ProductWithCategoryDto(p.id, p.productName, c.categoryName) From Category c Inner Join c.products p")
+	  List<ProductWithCategoryDto> getProductWithCategoryDetails();
+	  
+	  // select p.productId, p.productName, c.categoryName from Category c inner join Product p on c.categoryId = p.categoryId
+	  
+	  // JPQL'de her zaman one to many gidin. one to one ise, base tablodan gidin.
 }
 
 

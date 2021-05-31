@@ -1,5 +1,6 @@
 package kodlama.io.northwind.api.controlles;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import kodlama.io.northwind.business.abstracts.ProductService;
 import kodlama.io.northwind.core.utilities.results.DataResult;
 import kodlama.io.northwind.core.utilities.results.Result;
+import kodlama.io.northwind.entities.concretes.Category;
 import kodlama.io.northwind.entities.concretes.Product;
+import kodlama.io.northwind.entities.dtos.ProductWithCategoryDto;
 
 @RestController // sen bir controller'sin demek. java olmayanlar da beni tanısın anlamında
 
@@ -79,11 +83,29 @@ public class ProductsController {
   	return this.productService.getAllSorted();
 	}
 	
+	//TODO Umut düzeltti yeniden... gerekirse refactor edilir.
+	
+	@PostMapping("/getByCategoryIdIn")
+	public  DataResult<List<Product>> getByCategoryIdIn(@RequestBody List<Category> categories){
+
+		
+		return this.productService.getByCategoryIdIn(categories);
+	}
 	
 	
-	// @RequestBody => hem istek yapıyor. hem datan budur diyor. bu classdaki alanları arayıp buluyor.
-	// bir product nesnesine dönüştürüp/ json formatında gönderiyor
+	@GetMapping("/getProductWithCategoryDetails")
+	public DataResult<List<ProductWithCategoryDto>>getProductWithCategoryDetails(){
+		return this.productService.getProductWithCategoryDetails();
+	}
+	
+	
+	
+
 }
+
+
+// @RequestBody => hem istek yapıyor. hem datan budur diyor. bu classdaki alanları arayıp buluyor.
+// bir product nesnesine dönüştürüp/ json formatında gönderiyor
 
 // @RequestParam => yapılan isteğin parametrelerine bak. onu oku demek.
 

@@ -15,7 +15,9 @@ import kodlama.io.northwind.core.utilities.results.Result;
 import kodlama.io.northwind.core.utilities.results.SuccessDataResult;
 import kodlama.io.northwind.core.utilities.results.SuccessResult;
 import kodlama.io.northwind.dataAccess.abstracts.ProductDao;
+import kodlama.io.northwind.entities.concretes.Category;
 import kodlama.io.northwind.entities.concretes.Product;
+import kodlama.io.northwind.entities.dtos.ProductWithCategoryDto;
 
 
 
@@ -64,9 +66,9 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
-	public DataResult<List<Product>> getByCategoryIdIn(List<Integer> categories) {
+	public DataResult<List<Product>> getByCategoryIdIn(List<Category> categories) {
 		
-		return new SuccessDataResult<List<Product>>(this.productDao.getByCategoryIn(categories),"Data Listelendi");
+		return new SuccessDataResult<List<Product>>(this.productDao.findByCategoryIn(categories),"Data Listelendi");
 	}
 
 	@Override
@@ -109,10 +111,16 @@ public class ProductManager implements ProductService {
 		
 	 return new SuccessDataResult<List<Product>> (this.productDao.findAll(sort),"Başarılı ");
 	}
+
+	@Override
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+	
+		return new SuccessDataResult<>(this.productDao.getProductWithCategoryDetails(),"Data Listelendi.");
+	}
 	
      
 	
-	/// validatio  kuralları
+	
 	
 }
 
